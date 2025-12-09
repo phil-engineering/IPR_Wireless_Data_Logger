@@ -41,3 +41,9 @@ keyboard (Windows only)
 3. Writes data to binary log file
 4. Monitors file size and creates new files when limit is reached
 5. Files are named with timestamp for easy organization
+
+
+
+
+
+
