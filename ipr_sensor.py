@@ -4,34 +4,11 @@ import time
 # from ipr_sensor_serial_logger import *
 from ipr_sensor_command import IprSensorCommand
 from ipr_sensor_serial import IprSensorSerial
-from ipr_sensor_logging import SerialLoggerThread
+from ipr_sensor_logging import IprSensorSerialLoggerThread
 
 ipr_serial = IprSensorSerial()
-available_serial_ports = ipr_serial.list_available_ports()
-
-not_connected = True
-while not_connected:
-    if len(available_serial_ports) >= 2:
-        port_id = input("Enter the port ID to use: ")
-        if port_id.isdigit() and 0 <= int(port_id) <= 9:
-            port_id = int(port_id)
-            if port_id < len(available_serial_ports):
-                ipr_serial.connect(available_serial_ports[port_id])
-                not_connected = False
-            else:
-                print("Invalid input. Please enter a valid serial port ID.")
-        else:
-            print("Invalid input. Please enter a number between 0 and 9.")
-
-    elif len(available_serial_ports) == 1:
-        print("Only 1 serial port found, trying to connect...")
-        ipr_serial.connect(available_serial_ports[0])
-        not_connected = False
-    else:
-        print("No serial port found")
-        print("The script will terminate")
-        exit(0)  # Exits entire program
-
+if not ipr_serial.user_connect_to_port():
+    exit(0)
 
 ipr_cmd = IprSensorCommand(ipr_serial)
 
@@ -39,7 +16,7 @@ ipr_cmd = IprSensorCommand(ipr_serial)
 data_queue = queue.Queue(maxsize=1000)
 
 # Create and start logger thread
-logger = SerialLoggerThread(
+logger = IprSensorSerialLoggerThread(
     serial_port=ipr_serial,
     data_queue=data_queue,
     debug=True  # Set to False to disable console output
@@ -47,9 +24,7 @@ logger = SerialLoggerThread(
 logger.stop_logging()
 logger.start()
 
-
-
-time.sleep(1)
+time.sleep(0.5)
 
 def main():
     # Main loop - process commands

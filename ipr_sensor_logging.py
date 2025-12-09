@@ -8,7 +8,7 @@ MAX_FILE_SIZE = 150e6           # 150 MB (~2.5h)
 SAVE_FILE_EVERY_SIZE = 100e3    # 100 kB
 
 
-class SerialLoggerThread(threading.Thread):
+class IprSensorSerialLoggerThread(threading.Thread):
     """Thread that continuously reads from serial port and logs to file"""
 
     def __init__(self, serial_port, data_queue, debug=False):

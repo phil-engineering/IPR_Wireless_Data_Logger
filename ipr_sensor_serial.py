@@ -40,9 +40,37 @@ class IprSensorSerial:
             available.append(port.device)
         print("-" * 40)
         if not available:
-            print("  No serial ports found")
+            print("No serial ports found")
 
         return available
+
+    def user_connect_to_port(self):
+
+        available_serial_ports = self.list_available_ports()
+
+        not_connected = True
+        while not_connected:
+            if len(available_serial_ports) >= 2:
+                port_id = input("Enter the port ID to use: ")
+                if port_id.isdigit() and 0 <= int(port_id) <= 9:
+                    port_id = int(port_id)
+                    if port_id < len(available_serial_ports):
+                        self.connect(available_serial_ports[port_id])
+                        not_connected = False
+                    else:
+                        print("Invalid input. Please enter a valid serial port ID.")
+                else:
+                    print("Invalid input. Please enter a number between 0 and 9.")
+
+            elif len(available_serial_ports) == 1:
+                print("Only 1 serial port found, trying to connect...")
+                self.connect(available_serial_ports[0])
+                not_connected = False
+            else:
+                print("Unable to connect, no serial port found")
+                print("The script will terminate")
+                return False
+        return True
 
     def connect(self, port=None):
         """
