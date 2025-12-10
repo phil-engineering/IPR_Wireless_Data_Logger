@@ -142,6 +142,21 @@ class IprSensorCommand:
             print("Could not parse time from response")
             return None
 
+    def set_name(self):
+        self.stop_sensor_transmit()
+        self.set_sensor_ready_for_cmd()
+
+        new_name = input("Enter new sensor name: ")
+
+        _set_name_cmd = bytearray()
+        _set_name_cmd.extend(map(ord, "name " + new_name))
+
+        self.ipr_serial_port.write(_set_name_cmd)
+
+        name_str = self.read_data_from_sensor()
+
+        return name_str
+
     def get_time(self):
         """
         Get current time from sensor.
@@ -177,9 +192,6 @@ class IprSensorCommand:
         self.stop_sensor_transmit()
         self.set_sensor_ready_for_cmd()
 
-        # Format command: "time yyyy-mm-dd-hh-mm-00\r\n"
-        # time_cmd = f"time {date_time_obj.strftime('%Y-%m-%d-%H-%M')}-00\r\n"
-        # self.ipr_serial_port.write(time_cmd.encode('ascii'))
         _set_time_cmd = bytearray()
         _set_time_cmd.extend(map(ord, "time " + date_time_obj.strftime('%Y-%m-%d-%H-%M') + "-00\r\n"))
 
@@ -250,7 +262,7 @@ class IprSensorCommand:
         attempt = 0
 
         while attempt < max_attempts:
-            user_cmd = input("Enter date and time in the following format: yyyy-mm-dd-hh-mm: ")
+            user_cmd = input("Enter date and time in the following format yyyy-mm-dd-hh-mm: ")
 
             if user_cmd.lower() in ['quit', 'exit', 'cancel']:
                 return False, "Cancelled by user", None

@@ -36,7 +36,6 @@ def main():
             print("[menu] or [?]: Access this menu")
             print("[init]: List the sensor information, name, and time")
             print("[get_material]: Display the sensor's material")
-            print("[set_material]: Change the sensor's material")
             print("[get_name]: Display the sensor's name")
             print("[set_name]: Change the sensor's name")
             print("[set_tare]: Apply a new tare")
@@ -60,6 +59,7 @@ def main():
         elif user_cmd == "set_name":
             if logger.is_logging():
                 logger.stop_logging()
+            print(ipr_cmd.set_name())
 
         elif user_cmd == "get_time":
             if logger.is_logging():
