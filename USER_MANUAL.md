@@ -267,17 +267,17 @@ New tare: X: 0.000, Y: 0.000, Z: 0.000
 
 ## Quick Reference Card
 
-| Command | Purpose | When to Use |
-|---------|---------|-------------|
-| `menu` | Show all commands | When you forget a command |
-| `init` | Initialize sensor | First thing after connecting |
-| `get_name` | Check sensor name | Verify which sensor is connected |
-| `set_name` | Change sensor name | Identify different sensors |
-| `get_time` | Check sensor time | Verify time synchronization |
-| `set_time` | Set sensor time | At start of session |
-| `set_tare` | Zero the sensor | Before measurements |
+| Command           | Purpose | When to Use |
+|-------------------|---------|-------------|
+| `menu` or `?`     | Show all commands | When you forget a command |
+| `init`            | Initialize sensor | First thing after connecting |
+| `get_name`        | Check sensor name | Verify which sensor is connected |
+| `set_name`        | Change sensor name | Identify different sensors |
+| `get_time`        | Check sensor time | Verify time synchronization |
+| `set_time`        | Set sensor time | At start of session |
+| `set_tare`        | Zero the sensor | Before measurements |
 | `start_recording` | Begin logging data | Start data collection |
-| `stop_recording` | End logging | Finish data collection |
+| `stop_recording`  | End logging | Finish data collection |
 
 ---
 
