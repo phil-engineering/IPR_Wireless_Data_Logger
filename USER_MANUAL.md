@@ -12,32 +12,9 @@
 ## Getting Started
 
 ### What You Need
-- IPR sensor device
-- USB cable (or appropriate serial connection)
-- Computer with Python 3.6 or newer installed
+- IPR strain sensor device
+- Computer (Raspberry Pi) with Python 3.6 or newer installed
 - PySerial library installed (`pip install pyserial`)
-
-### First Time Setup
-
-1. **Connect your sensor**
-   - Plug the IPR sensor into your computer via USB
-   - Wait for your operating system to recognize the device
-   - On Windows, the device will appear as a COM port (e.g., COM3, COM4)
-   - On Mac/Linux, it will appear as /dev/ttyUSB0 or similar
-
-2. **Launch the program**
-   - Open a terminal or command prompt
-   - Navigate to the folder containing the program files
-   - Run: `python ipr_sensor.py`
-
-3. **Select your port**
-   - The program will display all available serial ports
-   - If only one port is found, it will connect automatically
-   - If multiple ports are shown, enter the ID number of your sensor
-
-4. **Verify connection**
-   - You should see a green checkmark: "✓ Connected to [PORT] at 921600 baud"
-   - If connection fails, check your cable and try again
 
 ---
 
@@ -145,7 +122,7 @@ To change the sensor's identification name:
 
 ```
 > set_name
-Enter new sensor name: Lab_Sensor_A
+Enter new sensor name: Sensor_ABC
 ```
 
 The sensor will confirm the name change.
