@@ -66,10 +66,7 @@ This command will:
 
 **Example output:**
 ```
-IPR Sensor v2.1
-Material: Steel
-Name: Sensor_Lab_01
-Time: 2024-12-10-14-30-00
+
 ```
 
 ### Checking Sensor Information
