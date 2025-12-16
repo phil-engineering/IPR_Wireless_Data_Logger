@@ -2,6 +2,11 @@
 
 A Python-based command-line interface for communicating with and logging data from IPR sensors via serial connection.
 
+## Documentation
+- [Installation Manual](Docs/WiFi_Instructions_rev2.2.docx)
+- [User Manual](Docs/USER_MANUAL.md)
+
+
 ## Features
 
 - **Serial Communication**: Automatic port detection and connection management
