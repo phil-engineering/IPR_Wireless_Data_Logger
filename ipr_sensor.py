@@ -49,7 +49,6 @@ def main():
                 logger.stop_logging()
             print(ipr_cmd.set_initialize())
             print(ipr_cmd.get_name())
-            print(ipr_cmd.get_time())
 
         elif user_cmd == "get_name":
             if logger.is_logging():

@@ -43,7 +43,14 @@ This command will:
 
 **Example output:**
 ```
-
+Humidty      : 53.0 %
+Pressure     : 999.3 HPa
+Temperature  : +22.5 C
+Battery      : 3.02 V
+Material     : MILD-STEEL
+Time (RTC)   : 2001-01-01-00-00-08
+Firmware Ver : 2.00A
+Name : JVL0-00EL-V6B2-WVNB-IO0O
 ```
 
 ### Checking Sensor Information
