@@ -40,6 +40,12 @@ This document provides step-by-step instructions to setup and use Wi-Fi Direct o
    - **OS:** Select "Raspberry Pi OS (64-bit)" or "Raspberry Pi OS Lite (64-bit)" if you don't need a desktop interface
    - **Storage:** Select your microSD card
 
+   ![Select Raspberry Pi Zero 2 W](images/Install_1p0_select_raspberry.png)
+   *Select Raspberry Pi Zero 2 W from the list*
+
+   ![Select OS](images/Install_2p0_select_raspberry_os.png)
+   *Select the Raspberry Pi OS, it can be the Lite version if no desktop is needed*
+
 3. Click the Settings gear icon (or press `Ctrl+Shift+X`) to configure OS customization
 
 ### 1.2 Configure OS Settings (IMPORTANT)
@@ -50,13 +56,22 @@ Configure the following settings in the Imager:
 - Set to: `IPR-sensor`
 - This allows you to access the Pi at `IPR-sensor.local` on the same Wi-Fi network
 
+![Hostname setup](images/Install_3p0_select_hostname.png)
+*Create a device hostname*
+
 #### Username and Password (REQUIRED)
 - **Username:** `ipr-sensor`
 - **Password:** `ipr-sensor`
 - **Note:** These credentials will be used for SSH access throughout this guide
 
+![Username and password setup](images/Install_4p0_select_user_password.png)
+*Setup the username and password for the main user. This will be used for SSH communication later*
+
 #### Enable SSH (REQUIRED)
 - Enable "Use password authentication"
+
+![Enable SSH](images/Install_5p0_enable_ssh.png)
+*Enable SSH communication with the Raspberry Pi*
 
 #### Wi-Fi Configuration (TEMPORARY - Optional)
 - Configure your local Wi-Fi network credentials
@@ -65,6 +80,9 @@ Configure the following settings in the Imager:
 
 #### Locale Settings
 - Set your timezone and keyboard layout
+
+![Installation Summary](images/Install_6p0_summary.png)
+*Summary of the installation*
 
 4. Click **Save**, then click **Write** to flash the OS to the SD card
 
@@ -130,6 +148,9 @@ Wi-Fi Direct will turn your Raspberry Pi into a Wi-Fi access point, allowing dir
 
 > **Note:** You will NOT have internet access while connected to the Pi's hotspot. The Pi will always be at IP address: `10.42.0.1`
 
+![Wi-Fi Networks](images/Install_7p0_wifi_connect.png) ![Connect to PiDirect](images/Install_8p0_wifi_connect.png)
+*Connect to the PiDirect network from your PC*
+
 ### 2.3 Configure Auto-Start on Boot
 
 1. Establish a new SSH connection to the Pi:
@@ -178,6 +199,9 @@ Configure WinSCP connection:
 - **Username:** `ipr-sensor`
 - **Password:** `ipr-sensor`
 
+![WinSCP Login](images/Install_9p0_winscp.png)
+*WinSCP connection settings*
+
 ### 3.4 Get the latest Python script from GitHub
 
 Repository: https://github.com/phil-engineering/IPR_Wireless_Data_Logger.git
@@ -200,6 +224,12 @@ Copy to location: `/home/ipr-sensor/Documents/*`
 
 2. Make sure it logs sensor data correctly. This will start the recording locally on the RPi with a new BIN file for each 150 MB of data.
 
+   ![Python Script Output](images/Install_10p0_sensor_init.png)
+   *Python script running and logging sensor data*
+
+   ![Data Files Created](images/Install_11p0_sensor_start_recording.png)
+   *Binary data files being created*
+
 ---
 
 ## 4. Accessing the Raspberry Pi from Your IPR Dashboard Software
@@ -215,6 +245,9 @@ Copy to location: `/home/ipr-sensor/Documents/*`
 ### 4.2 View the data in IPR Dashboard
 
 To view the data, select "**Data -> Load from local file...**" and choose the `*.bin` file that was saved in step 4.1
+
+![Load Data in Dashboard](images/Install_12p0_dashboard_connect.png)
+*Loading sensor data in the IPR Dashboard software*
 
 ---
 
