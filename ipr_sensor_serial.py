@@ -1,7 +1,10 @@
 import serial
 import serial.tools.list_ports
 
-DEBUG_MODE = 0
+# Global configuration flags for debugging purposes
+DEBUG_MODE = False  # Enable/disable general debug information
+DEBUG_SERIAL_RECEIVE = False  # Enable/disable serial data reception debugging
+
 
 class IprSensorSerial:
     """Basic serial port communication class"""
@@ -236,3 +239,34 @@ class IprSensorSerial:
     def __del__(self):
         """Destructor - ensure connection is closed"""
         self.disconnect()
+
+
+    def serial_read_binary(self):
+        """
+        Read a single byte from the serial port.
+
+        Returns:
+            bytes: Single byte read from serial port
+        """
+        _data = self.serial_connection.read(1)
+        if DEBUG_SERIAL_RECEIVE:
+            print(_data)
+        return _data
+
+    def serial_ipr_read_telegram(self):
+        """
+        Read a complete telegram from the serial port in binary mode.
+        Looks for Start of Frame (SOF) character (0x08) and collects all preceding data.
+
+        Returns:
+            str: Complete telegram in hexadecimal format
+        """
+        _start_char_found = False
+        _telegram = list()
+        while not _start_char_found:
+            data = self.serial_read_binary().hex()
+            if data == '08':  # Start of Frame character
+                _start_char_found = True
+            else:
+                _telegram.append(data)
+        return ''.join(_telegram)
