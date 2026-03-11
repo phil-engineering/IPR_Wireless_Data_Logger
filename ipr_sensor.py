@@ -28,9 +28,9 @@ time.sleep(0.5)
 
 # Create publisher instance
 publisher = IprSensorDatabase(
-    broker='weather.computatrum.cloud',
-    port=1883,
-    sensor_id=1,
+    broker='dh1.iprnet.ca',
+    port=8883,
+    sensor_id=2,
     serial_obj=ipr_serial
 )
 

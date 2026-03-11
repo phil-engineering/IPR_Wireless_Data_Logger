@@ -7,6 +7,7 @@ import time
 import math
 import random
 import threading
+import ssl
 
 from pyipr_sensor_lib.ipr_sensor_decoder import IPRSensorDecoder
 from pyipr_sensor_lib.ipr_serial_interface import IPRSerialInterface
@@ -15,8 +16,9 @@ from pyipr_sensor_lib.ipr_serial_interface import IPRSerialInterface
 class IprSensorDatabase:
     """Threaded MQTT sensor data publisher with start/pause/stop control"""
 
-    def __init__(self, broker='weather.computatrum.cloud', port=1883,
-                 user='ipr_sensor_admin', password='iprsensor2025',
+    def __init__(self, broker='dh1.iprnet.ca', port=8883,
+                 # user='ipr_sensor_admin', password='iprsensor2025',
+                 user='sensor_user', password='xPBXWR1HaI15y8FSXBn6PmJiIwUFiy40',
                  sensor_id=1, sample_rate=1000, env_sample_rate=1,
                  serial_obj=0):
 
@@ -85,12 +87,17 @@ class IprSensorDatabase:
         try:
             self.client = mqtt.Client(callback_api_version=CallbackAPIVersion.VERSION2)
             self.client.username_pw_set(self.user, self.password)
+
+            # Enable TLS (add these lines)
+            self.client.tls_set(cert_reqs=ssl.CERT_NONE)
+            self.client.tls_insecure_set(True)
+
             self.client.on_connect = self._on_connect
             self.client.on_publish = self._on_publish
 
             self.client.connect(self.broker, self.port, 60)
             self.client.loop_start()
-            time.sleep(1)  # Wait for connection
+            time.sleep(1)
             return True
         except Exception as e:
             print(f"✗ Error connecting to MQTT broker: {e}")
